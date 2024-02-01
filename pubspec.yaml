@@ -44,6 +44,7 @@ dependencies:
   expandable_page_view: ^1.0.17
   smooth_page_indicator: ^1.1.0
   hexcolor:
+  conditional_builder_null_safety: ^0.0.6
 
 dev_dependencies:
   flutter_test:

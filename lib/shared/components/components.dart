@@ -47,11 +47,10 @@ class CustomTextFormField extends StatelessWidget {
           )
         ),
         border: const OutlineInputBorder(),
-        suffixIcon: Icon(suffix),
-        prefixIcon: GestureDetector(
-          onTap: suffixPressed,
-          child: Icon(prefix),
-        ),
+        suffixIcon: GestureDetector(
+            onTap: suffixPressed,
+            child: Icon(suffix),),
+        prefixIcon: Icon(prefix),
       ),
     );
   }

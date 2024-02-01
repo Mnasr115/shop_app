@@ -26,7 +26,9 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                Text('Register', style: Theme.of(context).textTheme.displaySmall),
+                Text('Register', style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                  color: Colors.black
+                ),),
                 Text(
                   'Register and show our hot offers ',
                   style: Theme.of(context).textTheme.bodyMedium,
