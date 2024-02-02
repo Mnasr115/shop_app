@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/modules/Auth/login_screen/login_screen.dart';
 import 'package:shop_app/shared/components/constant.dart';
+import 'package:shop_app/shared/network/local/Cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingModel {
@@ -51,9 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
-                ), (route) => false);
+                submit();
               },
               child: const Text(
                 'SKIP',
@@ -110,12 +109,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       backgroundColor: kPrimaryColor,
                       onPressed: () {
                         if (isLast) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const LoginScreen(),
-                              ),
-                              (route) => false);
+                          submit();
                         } else {
                           boardingController.nextPage(
                             duration: const Duration(
@@ -138,6 +132,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       ),
     );
+  }
+
+  void submit() {
+    CacheHelper.savaData(key: 'onBoarding', value: true).then((value) {
+      if (value) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginScreen(),
+            ),
+            (route) => false);
+      }
+    });
   }
 
   Widget buildBoardingItem(BoardingModel boardingModel) {

@@ -1,9 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shop_app/layouts/shop_layout/shop_layout.dart';
 import 'package:shop_app/modules/Auth/login_screen/cubit/login_cubit.dart';
 import 'package:shop_app/modules/Auth/register_screen/register_screen.dart';
 import 'package:shop_app/shared/components/components.dart';
+import 'package:shop_app/shared/network/local/Cache_helper.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -15,7 +18,31 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is LoginSuccessState) {
+            if (state.loginModel.status!) {
+              print(state.loginModel.message);
+              print(state.loginModel.data?.token);
+              CacheHelper.savaData(
+                key: 'token',
+                value: state.loginModel.data?.token,
+              ).then((value) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ShopLayout(),
+                  ),
+                );
+              });
+            } else {
+              print(state.loginModel.message);
+              showToast(
+                text: state.loginModel.message!,
+                state: ToastStates.ERROR,
+              );
+            }
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             body: Center(
@@ -83,12 +110,10 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                           suffix: LoginCubit.get(context).suffix,
-                          suffixPressed: ()
-                          {
+                          suffixPressed: () {
                             LoginCubit.get(context).changePasswordVisibility();
                           },
                           isPassword: LoginCubit.get(context).isPassword,
-
                         ),
                         const SizedBox(
                           height: 20,

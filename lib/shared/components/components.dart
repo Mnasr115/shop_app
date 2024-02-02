@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -38,18 +39,14 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: isPassword,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(
-          color: Colors.black
-        ),
+        labelStyle: const TextStyle(color: Colors.black),
         focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.blue
-          )
-        ),
+            borderSide: BorderSide(color: Colors.blue)),
         border: const OutlineInputBorder(),
         suffixIcon: GestureDetector(
-            onTap: suffixPressed,
-            child: Icon(suffix),),
+          onTap: suffixPressed,
+          child: Icon(suffix),
+        ),
         prefixIcon: Icon(prefix),
       ),
     );
@@ -58,7 +55,9 @@ class CustomTextFormField extends StatelessWidget {
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key, required this.text, required this.onPressed,
+    super.key,
+    required this.text,
+    required this.onPressed,
   });
 
   final String text;
@@ -81,4 +80,33 @@ class CustomButton extends StatelessWidget {
       ),
     );
   }
+}
+
+void showToast({required String text, required ToastStates state}) =>
+    Fluttertoast.showToast(
+        msg: text,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: chooseToastColor(state),
+        textColor: Colors.white,
+        fontSize: 16.0,
+    );
+
+enum ToastStates { SUCCESS, ERROR, WARNING, }
+
+Color chooseToastColor(ToastStates state) {
+  Color color;
+  switch (state) {
+    case ToastStates.SUCCESS:
+      color = Colors.green;
+      break;
+    case ToastStates.ERROR:
+      color = Colors.red;
+      break;
+    case ToastStates.WARNING:
+      color = Colors.amber;
+      break;
+  }
+  return color;
 }

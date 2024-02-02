@@ -45,6 +45,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   hexcolor:
   conditional_builder_null_safety: ^0.0.6
+  fluttertoast: ^8.2.4
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
