@@ -10,15 +10,15 @@ import 'package:shop_app/shared/network/local/Cache_helper.dart';
 import 'package:shop_app/shared/network/remote/bloc_observer.dart';
 import 'package:shop_app/shared/network/remote/dio_helper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  CacheHelper.init();
+  await CacheHelper.init();
 
-  Widget widget;
-
-  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
-  String token = CacheHelper.getData(key: 'token');
+  Widget widget ;
+  bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+  String? token = CacheHelper.getData(key: 'token');
 
   if (onBoarding != null) {
     if (token != null) {
@@ -36,11 +36,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final Widget startWidget;
+  final Widget? startWidget;
 
   const MyApp({
     super.key,
-    required this.startWidget,
+     this.startWidget,
   });
   // This widget is the root of your application.
   @override
