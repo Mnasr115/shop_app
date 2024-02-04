@@ -52,11 +52,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
             bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                 selectedItemColor: kPrimaryColor,
                 unselectedItemColor: Colors.black
             ),
             appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.white,
+              elevation: 0,
               systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.black,
                   statusBarIconBrightness: Brightness.light

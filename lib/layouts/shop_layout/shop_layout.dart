@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layouts/shop_layout/cubit/shop_cubit.dart';
 import 'package:shop_app/modules/Auth/login_screen/cubit/login_cubit.dart';
 import 'package:shop_app/modules/search/search_screen.dart';
+import 'package:shop_app/shared/components/constant.dart';
 
 class ShopLayout extends StatelessWidget {
   const ShopLayout({super.key});
@@ -17,6 +20,9 @@ class ShopLayout extends StatelessWidget {
           appBar: AppBar(
             title: const Text(
               'Shoppe',
+              style: TextStyle(
+                color: kPrimaryColor,
+              ),
             ),
             actions: [
               IconButton(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:shop_app/models/home_model/HomeModel.dart';
+import 'package:shop_app/modules/carts/carts_screen.dart';
 import 'package:shop_app/modules/categories/categories_screen.dart';
 import 'package:shop_app/modules/favorites/favorites_screen.dart';
 import 'package:shop_app/modules/products/products_screen.dart';
@@ -43,6 +44,7 @@ class ShopCubit extends Cubit<ShopStates> {
   List<Widget> screens = [
     const ProductScreen(),
     const CategoriesScreen(),
+    const CartsScreen(),
     const FavoritesScreen(),
     const SettingsScreen(),
   ];
@@ -59,6 +61,12 @@ class ShopCubit extends Cubit<ShopStates> {
         Icons.apps,
       ),
       label: 'Category',
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(
+        Icons.shopping_cart,
+      ),
+      label: 'Carts',
     ),
     const BottomNavigationBarItem(
       icon: Icon(
