@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shop_app/layouts/shop_layout/cubit/shop_cubit.dart';
 import 'package:shop_app/layouts/shop_layout/shop_layout.dart';
 import 'package:shop_app/modules/Auth/login_screen/login_screen.dart';
 import 'package:shop_app/modules/onboarding_screen/onboarding_screen.dart';
@@ -16,9 +17,9 @@ void main() async {
   DioHelper.init();
   await CacheHelper.init();
 
-  Widget widget ;
+  Widget widget;
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
-  String? token = CacheHelper.getData(key: 'token');
+  token = CacheHelper.getData(key: 'token');
 
   if (onBoarding != null) {
     if (token != null) {
@@ -36,28 +37,40 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final Widget? startWidget;
+  final Widget startWidget;
 
   const MyApp({
     super.key,
-     this.startWidget,
+    required this.startWidget,
   });
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Colors.black,
-              statusBarBrightness: Brightness.light),
-          titleTextStyle: TextStyle(
-            color: kPrimaryColor,
-          ),
+    return BlocProvider(
+      create: (context) => ShopCubit()..getHomeData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                selectedItemColor: kPrimaryColor,
+                unselectedItemColor: Colors.black
+            ),
+            appBarTheme: const AppBarTheme(
+              systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarColor: Colors.black,
+                  statusBarIconBrightness: Brightness.light
+              ),
+              titleTextStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontFamily: 'Janna',
+              ),
+            )
         ),
+        home: ShopLayout(),
       ),
-      home: startWidget,
     );
   }
 }
