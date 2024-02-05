@@ -20,3 +20,16 @@ class ShopErrorHomeDataState extends ShopStates {
 }
 
 class ChangeBottemNavigationBarState extends ShopStates {}
+
+class ShopSuccessCategoryState extends ShopStates {
+  final CategoryModel categoryModel;
+
+  ShopSuccessCategoryState(this.categoryModel);
+}
+
+class ShopErrorCategoryState extends ShopStates {
+  final String errorMessage;
+
+  ShopErrorCategoryState(this.errorMessage);
+
+}

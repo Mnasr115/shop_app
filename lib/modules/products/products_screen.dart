@@ -18,7 +18,7 @@ class ProductScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: ShopCubit.get(context).homeModel != null,
           builder: (context) =>
-              productBuilder(ShopCubit.get(context).homeModel!),
+              builderWidget(ShopCubit.get(context).homeModel!),
           fallback: (context) => const Center(
             child: CircularProgressIndicator(),
           ),
@@ -27,10 +27,11 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
-  Widget productBuilder(HomeModel model) {
+  Widget builderWidget(HomeModel model) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: 10,
@@ -38,10 +39,10 @@ class ProductScreen extends StatelessWidget {
           CarouselSlider(
             items: model.data?.banners
                 ?.map(
-                  (e) => CachedNetworkImage(imageUrl:
-                  e.image!,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                  (e) => CachedNetworkImage(
+                    imageUrl: e.image!,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
                 )
                 .toList(),
@@ -60,6 +61,36 @@ class ProductScreen extends StatelessWidget {
               ),
               autoPlayCurve: Curves.fastOutSlowIn,
               scrollDirection: Axis.horizontal,
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'Category Section',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          buildCategoryItems(),
+          const SizedBox(
+            height: 15,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'New Products',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(
@@ -83,6 +114,50 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
+  Widget buildCategoryItems() {
+    return GestureDetector(
+      onTap: (){
+        print('Done');
+      },
+      child: SizedBox(
+        height: 100,
+        child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (BuildContext context, int index) =>  Stack(
+            alignment: AlignmentDirectional.bottomCenter,
+            children: [
+              CachedNetworkImage(
+                imageUrl:
+                "https://student.valuxapps.com/storage/uploads/categories/16893929290QVM1.modern-devices-isometric-icons-collection-with-sixteen-isolated-images-computers-periphereals-variou.jpeg",
+                width: 100,
+                height: 100,
+              ),
+              Container(
+                width: 100,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.8),
+                ),
+                child: const Text(
+                  'Electronics',
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),),
+              ),
+            ],
+          ),
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(
+            width: 10,
+          ),
+          itemCount: 7,
+        ),
+      ),
+    );
+  }
+
   Widget buildGridViewProductItems(Products model) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,25 +175,23 @@ class ProductScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   icon: const Icon(
-                  Icons.add_shopping_cart_rounded,
+                    Icons.add_shopping_cart_rounded,
                     size: 28,
-                ),
+                  ),
                 ),
               ],
             ),
-            if (model.discount!=0)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              color: Colors.red,
-              child: const Text('DISCOUNT',
-              style: TextStyle(
-                fontSize: 8,
-                color: Colors.white
-              ),),
-            ),
-
+            if (model.discount != 0)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                color: Colors.red,
+                child: const Text(
+                  'DISCOUNT',
+                  style: TextStyle(fontSize: 8, color: Colors.white),
+                ),
+              ),
           ],
         ),
         Padding(
@@ -139,23 +212,22 @@ class ProductScreen extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 12,
                       color: kPrimaryColor,
-
                     ),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
-                 if(model.discount!=0)
-                   Text(
-                     '${model.oldPrice?.round()}' '\$',
-                     style: const TextStyle(
-                       fontSize: 10,
-                       decoration: TextDecoration.lineThrough,
-                     ),
-                   ),
+                  if (model.discount != 0)
+                    Text(
+                      '${model.oldPrice?.round()}' '\$',
+                      style: const TextStyle(
+                        fontSize: 10,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
                   const Spacer(),
                   IconButton(
-                    padding: EdgeInsets.zero,
+                      padding: EdgeInsets.zero,
                       onPressed: () {},
                       icon: const Icon(
                         Icons.favorite_outline,
@@ -170,3 +242,5 @@ class ProductScreen extends StatelessWidget {
     );
   }
 }
+
+

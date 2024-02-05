@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:shop_app/models/category_model/CategoryModel.dart';
 import 'package:shop_app/models/home_model/HomeModel.dart';
 import 'package:shop_app/modules/carts/carts_screen.dart';
 import 'package:shop_app/modules/categories/categories_screen.dart';
@@ -40,6 +42,8 @@ class ShopCubit extends Cubit<ShopStates> {
       );
     });
   }
+
+
 
   List<Widget> screens = [
     const ProductScreen(),
