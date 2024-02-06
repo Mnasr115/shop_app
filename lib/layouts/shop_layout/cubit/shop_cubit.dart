@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:shop_app/models/category_model/CategoryModel.dart';
+import 'package:shop_app/models/category_model/category_Model.dart';
 import 'package:shop_app/models/home_model/HomeModel.dart';
 import 'package:shop_app/models/home_model/Products.dart';
 import 'package:shop_app/modules/carts/carts_screen.dart';
