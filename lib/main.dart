@@ -48,31 +48,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ShopCubit()..getHomeData(),
+      create: (context) => ShopCubit()
+        ..getHomeData()
+        ..getGategories(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+            scaffoldBackgroundColor: Colors.white,
             bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                 selectedItemColor: kPrimaryColor,
-                unselectedItemColor: Colors.black
-            ),
+                unselectedItemColor: Colors.black),
             appBarTheme: const AppBarTheme(
               backgroundColor: Colors.white,
               elevation: 0,
               systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.black,
-                  statusBarIconBrightness: Brightness.light
-              ),
+                  statusBarIconBrightness: Brightness.light),
               titleTextStyle: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontFamily: 'Janna',
               ),
-            )
-        ),
-        home: ShopLayout(),//startWidget,
+            )),
+        home: const ShopLayout(), //startWidget,
       ),
     );
   }

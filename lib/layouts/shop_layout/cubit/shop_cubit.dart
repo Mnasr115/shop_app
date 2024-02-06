@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:shop_app/models/category_model/CategoryModel.dart';
 import 'package:shop_app/models/home_model/HomeModel.dart';
+import 'package:shop_app/models/home_model/Products.dart';
 import 'package:shop_app/modules/carts/carts_screen.dart';
 import 'package:shop_app/modules/categories/categories_screen.dart';
 import 'package:shop_app/modules/favorites/favorites_screen.dart';
@@ -21,6 +22,8 @@ class ShopCubit extends Cubit<ShopStates> {
   ShopCubit() : super(ShopInitialState());
 
   HomeModel? homeModel;
+  CategoryModel? categoryModel;
+
   static ShopCubit get(context) => BlocProvider.of(context);
 
   void getHomeData() async {
@@ -43,7 +46,16 @@ class ShopCubit extends Cubit<ShopStates> {
     });
   }
 
-
+  void getGategories() async {
+    await DioHelper.getData(
+      url: Categories,
+    ).then((value){
+      categoryModel = CategoryModel.fromJson(value.data);
+      emit(ShopSuccessCategoryState(categoryModel!));
+    }).catchError((error){
+      emit(ShopErrorCategoryState(error.toString(),),);
+    });
+  }
 
   List<Widget> screens = [
     const ProductScreen(),
