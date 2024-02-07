@@ -33,3 +33,18 @@ class ShopErrorCategoryState extends ShopStates {
   ShopErrorCategoryState(this.errorMessage);
 
 }
+
+class ShopSuccessChangeFavState extends ShopStates {
+  final ChangeFavoritesModel changeFavoritesModel;
+
+  ShopSuccessChangeFavState(this.changeFavoritesModel);
+}
+
+class ShopChangeFavState extends ShopStates {}
+
+class ShopErrorChangeFavState extends ShopStates {
+  final String errorMessage;
+
+  ShopErrorChangeFavState(this.errorMessage);
+
+}
