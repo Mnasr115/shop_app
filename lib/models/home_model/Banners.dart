@@ -1,9 +1,10 @@
 class Banners {
   Banners({
-      this.id, 
-      this.image, 
-      this.category, 
-      this.product,});
+    this.id,
+    this.image,
+    this.category,
+    this.product,
+  });
 
   Banners.fromJson(dynamic json) {
     id = json['id'];
@@ -24,5 +25,4 @@ class Banners {
     map['product'] = product;
     return map;
   }
-
 }

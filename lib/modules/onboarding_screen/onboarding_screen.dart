@@ -135,8 +135,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   void submit() {
-    CacheHelper.savaData(key: 'onBoarding', value: true).then((value) {
-      if (value) {
+    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
+      if (value!) {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(

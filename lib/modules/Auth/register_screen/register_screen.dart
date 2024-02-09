@@ -21,14 +21,20 @@ class RegisterScreen extends StatelessWidget {
                   height: 25,
                 ),
                 const Image(
-                  image: AssetImage('assets/images/login.png',),
+                  image: AssetImage(
+                    'assets/images/login.png',
+                  ),
                 ),
                 const SizedBox(
                   height: 15,
                 ),
-                Text('Register', style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                  color: Colors.black
-                ),),
+                Text(
+                  'Register',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall
+                      ?.copyWith(color: Colors.black),
+                ),
                 Text(
                   'Register and show our hot offers ',
                   style: Theme.of(context).textTheme.bodyMedium,
@@ -36,7 +42,6 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-
                 CustomTextFormField(
                   textEditingController: userNameController,
                   type: TextInputType.name,
@@ -48,7 +53,6 @@ class RegisterScreen extends StatelessWidget {
                   },
                   prefix: Icons.person,
                 ),
-
                 const SizedBox(
                   height: 20,
                 ),

@@ -1,36 +1,59 @@
-class Data {
-  Data({
-      this.name, 
-      this.phone, 
-      this.email, 
-      this.id, 
-      this.image, 
-      this.token,});
+import 'package:equatable/equatable.dart';
 
-  Data.fromJson(dynamic json) {
-    name = json['name'];
-    phone = json['phone'];
-    email = json['email'];
-    id = json['id'];
-    image = json['image'];
-    token = json['token'];
+class Data extends Equatable {
+  final int? id;
+  final String? name;
+  final String? email;
+  final String? phone;
+  final String? image;
+  final int? points;
+  final int? credit;
+  final String? token;
+
+  const Data({
+    this.id,
+    this.name,
+    this.email,
+    this.phone,
+    this.image,
+    this.points,
+    this.credit,
+    this.token,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        id: json['id'] as int?,
+        name: json['name'] as String?,
+        email: json['email'] as String?,
+        phone: json['phone'] as String?,
+        image: json['image'] as String?,
+        points: json['points'] as int?,
+        credit: json['credit'] as int?,
+        token: json['token'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'image': image,
+        'points': points,
+        'credit': credit,
+        'token': token,
+      };
+
+  @override
+  List<Object?> get props {
+    return [
+      id,
+      name,
+      email,
+      phone,
+      image,
+      points,
+      credit,
+      token,
+    ];
   }
-  String? name;
-  String? phone;
-  String? email;
-  int? id;
-  String? image;
-  String? token;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['name'] = name;
-    map['phone'] = phone;
-    map['email'] = email;
-    map['id'] = id;
-    map['image'] = image;
-    map['token'] = token;
-    return map;
-  }
-
 }

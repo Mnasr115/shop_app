@@ -8,9 +8,7 @@ class CartsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: const Center(
-        child: Text(
-            'Carts Screen'
-        ),
+        child: Text('Carts Screen'),
       ),
     );
   }

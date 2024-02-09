@@ -16,12 +16,13 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopCubit,ShopStates>(
-      listener: (context, state){
-        if (state is ShopSuccessChangeFavState){
-          if(!state.changeFavoritesModel.status!)
-          {
-            showToast(text: state.changeFavoritesModel.message!, state: ToastStates.ERROR);
+    return BlocConsumer<ShopCubit, ShopStates>(
+      listener: (context, state) {
+        if (state is ShopSuccessChangeFavState) {
+          if (!state.changeFavoritesModel.status!) {
+            showToast(
+                text: state.changeFavoritesModel.message!,
+                state: ToastStates.ERROR);
           }
         }
       },
@@ -31,7 +32,8 @@ class ProductScreen extends StatelessWidget {
               ShopCubit.get(context).categoryModel != null,
           builder: (context) => productBuilder(
               ShopCubit.get(context).homeModel!,
-              ShopCubit.get(context).categoryModel!,context),
+              ShopCubit.get(context).categoryModel!,
+              context),
           fallback: (context) => const Center(
             child: CircularProgressIndicator(),
           ),
@@ -41,7 +43,7 @@ class ProductScreen extends StatelessWidget {
   }
 }
 
-Widget productBuilder(HomeModel model, CategoryModel categoryModel,context) {
+Widget productBuilder(HomeModel model, CategoryModel categoryModel, context) {
   return SingleChildScrollView(
     physics: const BouncingScrollPhysics(),
     child: Column(
@@ -139,7 +141,8 @@ Widget productBuilder(HomeModel model, CategoryModel categoryModel,context) {
           physics: const NeverScrollableScrollPhysics(),
           children: List.generate(
             model.data!.products!.length,
-            (index) => buildGridViewProducts(model.data!.products![index],context),
+            (index) =>
+                buildGridViewProducts(model.data!.products![index], context),
           ),
         ),
       ],
@@ -175,7 +178,7 @@ Widget buildCategoryItems(Datum data) {
   );
 }
 
-Widget buildGridViewProducts(Products model,context) {
+Widget buildGridViewProducts(Products model, context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -190,7 +193,7 @@ Widget buildGridViewProducts(Products model,context) {
                 width: 100,
                 height: 100,
               ),
-              const Spacer(),
+              /*const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: IconButton(
@@ -200,7 +203,7 @@ Widget buildGridViewProducts(Products model,context) {
                     size: 28,
                   ),
                 ),
-              ),
+              ),*/
             ],
           ),
           if (model.discount != 0)
@@ -247,18 +250,22 @@ Widget buildGridViewProducts(Products model,context) {
                   ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      ShopCubit.get(context).changeFavorites(model.id!);
-                    },
-                    icon: CircleAvatar(
-                      radius: 15,
-                      backgroundColor: ShopCubit.get(context).favorites[model.id!]! ? kPrimaryColor : Colors.grey,
-                      child: const Icon(
-                        Icons.favorite_outline,
-                        size: 14,
-                        color: Colors.white,
-                      ),
-                    ),),
+                  onPressed: () {
+                    ShopCubit.get(context).changeFavorites(model.id!);
+                  },
+                  icon: CircleAvatar(
+                    radius: 15,
+                    backgroundColor:
+                        ShopCubit.get(context).favorites[model.id!]!
+                            ? kPrimaryColor
+                            : Colors.grey,
+                    child: const Icon(
+                      Icons.favorite_outline,
+                      size: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],

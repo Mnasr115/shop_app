@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/shared/components/constant.dart';
 
-
 ThemeData darkTheme = ThemeData(
   fontFamily: 'Janna',
   primarySwatch: kPrimaryColor,

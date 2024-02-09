@@ -1,28 +1,28 @@
+import 'package:equatable/equatable.dart';
+
 import 'Data.dart';
 
-class LoginModel {
-  LoginModel({
-      this.status, 
-      this.message, 
-      this.data,});
+class LoginModel extends Equatable {
+  final bool? status;
+  final String? message;
+  final Data? data;
 
-  LoginModel.fromJson(dynamic json) {
-    status = json['status'];
-    message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
-  }
-  bool? status;
-  String? message;
-  Data? data;
+  const LoginModel({this.status, this.message, this.data});
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['status'] = status;
-    map['message'] = message;
-    if (data != null) {
-      map['data'] = data?.toJson();
-    }
-    return map;
-  }
+  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
+        status: json['status'] as bool?,
+        message: json['message'] as String?,
+        data: json['data'] == null
+            ? null
+            : Data.fromJson(json['data'] as Map<String, dynamic>),
+      );
 
+  Map<String, dynamic> toJson() => {
+        'status': status,
+        'message': message,
+        'data': data?.toJson(),
+      };
+
+  @override
+  List<Object?> get props => [status, message, data];
 }

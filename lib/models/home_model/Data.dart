@@ -1,12 +1,12 @@
 import 'package:shop_app/models/home_model/Banners.dart';
 import 'package:shop_app/models/home_model/Products.dart';
 
-
 class Data {
   Data({
-      this.banners, 
-      this.products, 
-      this.ad,});
+    this.banners,
+    this.products,
+    this.ad,
+  });
 
   Data.fromJson(dynamic json) {
     if (json['banners'] != null) {
@@ -38,5 +38,4 @@ class Data {
     map['ad'] = ad;
     return map;
   }
-
 }

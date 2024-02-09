@@ -1,15 +1,16 @@
 class Products {
   Products({
-      this.id, 
-      this.price, 
-      this.oldPrice, 
-      this.discount, 
-      this.image, 
-      this.name, 
-      this.description, 
-      this.images, 
-      this.inFavorites, 
-      this.inCart,});
+    this.id,
+    this.price,
+    this.oldPrice,
+    this.discount,
+    this.image,
+    this.name,
+    this.description,
+    this.images,
+    this.inFavorites,
+    this.inCart,
+  });
 
   Products.fromJson(dynamic json) {
     id = json['id'];
@@ -48,5 +49,4 @@ class Products {
     map['in_cart'] = inCart;
     return map;
   }
-
 }

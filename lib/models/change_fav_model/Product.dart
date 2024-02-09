@@ -1,10 +1,11 @@
 class Product {
   Product({
-      this.id, 
-      this.price, 
-      this.oldPrice, 
-      this.discount, 
-      this.image,});
+    this.id,
+    this.price,
+    this.oldPrice,
+    this.discount,
+    this.image,
+  });
 
   Product.fromJson(dynamic json) {
     id = json['id'];
@@ -28,5 +29,4 @@ class Product {
     map['image'] = image;
     return map;
   }
-
 }

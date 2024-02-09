@@ -2,9 +2,10 @@ import 'Data.dart';
 
 class HomeModel {
   HomeModel({
-      this.status, 
-      this.message, 
-      this.data,});
+    this.status,
+    this.message,
+    this.data,
+  });
 
   HomeModel.fromJson(dynamic json) {
     status = json['status'];
@@ -24,5 +25,4 @@ class HomeModel {
     }
     return map;
   }
-
 }

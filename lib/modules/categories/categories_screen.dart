@@ -5,7 +5,9 @@ import 'package:shop_app/layouts/shop_layout/cubit/shop_cubit.dart';
 import 'package:shop_app/models/category_model/datum.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, });
+  const CategoriesScreen({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
@@ -16,9 +18,9 @@ class CategoriesScreen extends StatelessWidget {
             ShopCubit.get(context).getGategories();
           },
           child: ListView.separated(
-            itemBuilder: (context, index) => buildCategoryItem(ShopCubit.get(context).categoryModel!.data!.data![index]),
-            separatorBuilder: (context, index) =>
-             Divider(
+            itemBuilder: (context, index) => buildCategoryItem(
+                ShopCubit.get(context).categoryModel!.data!.data![index]),
+            separatorBuilder: (context, index) => Divider(
               thickness: 0.5,
               height: 2,
               indent: 16,
@@ -31,8 +33,7 @@ class CategoriesScreen extends StatelessWidget {
     );
   }
 
-  Widget buildCategoryItem(Datum data) =>
-      Padding(
+  Widget buildCategoryItem(Datum data) => Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
@@ -44,7 +45,7 @@ class CategoriesScreen extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-             Text(
+            Text(
               data.name!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

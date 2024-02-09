@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -86,16 +84,20 @@ class CustomButton extends StatelessWidget {
 
 void showToast({required String text, required ToastStates state}) =>
     Fluttertoast.showToast(
-        msg: text,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 5,
-        backgroundColor: chooseToastColor(state),
-        textColor: Colors.white,
-        fontSize: 16.0,
+      msg: text,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 5,
+      backgroundColor: chooseToastColor(state),
+      textColor: Colors.white,
+      fontSize: 16.0,
     );
 
-enum ToastStates { SUCCESS, ERROR, WARNING, }
+enum ToastStates {
+  SUCCESS,
+  ERROR,
+  WARNING,
+}
 
 Color chooseToastColor(ToastStates state) {
   Color color;
