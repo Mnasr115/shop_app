@@ -32,8 +32,8 @@ class SettingsScreen extends StatelessWidget {
                   key: formKey,
                   child: Column(
                     children: [
-                      if(state is ShopLoadingUpdateUserState)
-                      const LinearProgressIndicator(),
+                      if (state is ShopLoadingUpdateUserState)
+                        const LinearProgressIndicator(),
                       const SizedBox(
                         height: 20,
                       ),

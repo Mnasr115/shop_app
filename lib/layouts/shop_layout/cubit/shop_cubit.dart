@@ -1,14 +1,9 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:shop_app/models/category_model/category_Model.dart';
 import 'package:shop_app/models/change_fav_model/ChangeFavoritesModel.dart';
-import 'package:shop_app/models/fav_models/favorites_model/favorites_model.dart';
+import 'package:shop_app/models/favorites_model/favorites_model.dart';
 import 'package:shop_app/models/home_model/HomeModel.dart';
-import 'package:shop_app/models/home_model/Products.dart';
 import 'package:shop_app/models/login_model/LoginModel.dart';
 import 'package:shop_app/modules/carts/carts_screen.dart';
 import 'package:shop_app/modules/categories/categories_screen.dart';
@@ -86,7 +81,7 @@ class ShopCubit extends Cubit<ShopStates> {
       homeModel = HomeModel.fromJson(value.data);
 
       homeModel!.data!.products!.forEach((element) {
-        favorites.addAll({element.id!: element.inFavorites!});
+        favorites.addAll({element.id: element.inFavorites!});
       });
       emit(
         ShopSuccessHomeDataState(homeModel!),
@@ -118,7 +113,7 @@ class ShopCubit extends Cubit<ShopStates> {
 
   void changeFavorites(int productId) async {
     favorites[productId] = !favorites[productId]!;
-    emit(ShopChangeFavState());
+    emit(ShopLoadingChangeFavState());
     await DioHelper.postData(
       url: FAVORITES,
       data: {
@@ -131,13 +126,20 @@ class ShopCubit extends Cubit<ShopStates> {
       if (!changeFavoritesModel!.status!) {
         favorites[productId] = !favorites[productId]!;
       }
+      else
+        {
+          getFavorites();
+        }
       emit(ShopSuccessChangeFavState(changeFavoritesModel!));
     }).catchError((error) {
+       favorites[productId] = !favorites[productId]!;
       emit(ShopErrorChangeFavState(error.toString()));
     });
   }
 
   void getFavorites() async {
+
+    emit(ShopLoadingGetFavState());
     await DioHelper.getData(
       url: FAVORITES,
       token: token,

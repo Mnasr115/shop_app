@@ -26,7 +26,7 @@ class RegisterScreen extends StatelessWidget {
               CacheHelper.saveData(
                 key: 'token',
                 value: state.loginModel.data?.token,
-              ).then((value){
+              ).then((value) {
                 token = state.loginModel.data?.token;
                 Navigator.pushReplacement(
                   context,
@@ -143,7 +143,8 @@ class RegisterScreen extends StatelessWidget {
                           },
                           suffix: RegisterCubit.get(context).suffix,
                           suffixPressed: () {
-                            RegisterCubit.get(context).changePasswordVisibility();
+                            RegisterCubit.get(context)
+                                .changePasswordVisibility();
                           },
                           isPassword: RegisterCubit.get(context).isPassword,
                         ),

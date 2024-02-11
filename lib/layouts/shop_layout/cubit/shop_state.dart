@@ -39,13 +39,15 @@ class ShopSuccessChangeFavState extends ShopStates {
   ShopSuccessChangeFavState(this.changeFavoritesModel);
 }
 
-class ShopChangeFavState extends ShopStates {}
+class ShopLoadingChangeFavState extends ShopStates {}
 
 class ShopErrorChangeFavState extends ShopStates {
   final String errorMessage;
 
   ShopErrorChangeFavState(this.errorMessage);
 }
+
+class ShopLoadingGetFavState extends ShopStates {}
 
 class ShopSuccessGetFavState extends ShopStates {}
 
@@ -68,7 +70,6 @@ class ShopErrorGetProfileState extends ShopStates {
 
   ShopErrorGetProfileState(this.errorMessage);
 }
-
 
 class ShopLoadingUpdateUserState extends ShopStates {}
 

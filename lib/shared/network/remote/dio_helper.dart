@@ -49,7 +49,6 @@ class DioHelper {
     );
   }
 
-
   static Future<Response> putData({
     required String url,
     Map<String, dynamic>? query,

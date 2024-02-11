@@ -24,7 +24,7 @@ class Products {
     inFavorites = json['in_favorites'];
     inCart = json['in_cart'];
   }
-  int? id;
+  dynamic id;
   num? price;
   num? oldPrice;
   num? discount;

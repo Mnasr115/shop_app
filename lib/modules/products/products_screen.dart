@@ -88,7 +88,7 @@ Widget productBuilder(HomeModel model, CategoryModel categoryModel, context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Category Section',
+                'Categories',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -193,7 +193,7 @@ Widget buildGridViewProducts(Products model, context) {
                 width: 100,
                 height: 100,
               ),
-              /*const Spacer(),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: IconButton(
@@ -203,7 +203,7 @@ Widget buildGridViewProducts(Products model, context) {
                     size: 28,
                   ),
                 ),
-              ),*/
+              ),
             ],
           ),
           if (model.discount != 0)
@@ -251,12 +251,12 @@ Widget buildGridViewProducts(Products model, context) {
                 const Spacer(),
                 IconButton(
                   onPressed: () {
-                    ShopCubit.get(context).changeFavorites(model.id!);
+                    ShopCubit.get(context).changeFavorites(model.id);
                   },
                   icon: CircleAvatar(
                     radius: 15,
                     backgroundColor:
-                        ShopCubit.get(context).favorites[model.id!]!
+                        ShopCubit.get(context).favorites[model.id]!
                             ? kPrimaryColor
                             : Colors.grey,
                     child: const Icon(
