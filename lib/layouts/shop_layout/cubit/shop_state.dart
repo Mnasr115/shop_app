@@ -68,3 +68,18 @@ class ShopErrorGetProfileState extends ShopStates {
 
   ShopErrorGetProfileState(this.errorMessage);
 }
+
+
+class ShopLoadingUpdateUserState extends ShopStates {}
+
+class ShopSuccessUpdateUserState extends ShopStates {
+  final LoginModel userModel;
+
+  ShopSuccessUpdateUserState(this.userModel);
+}
+
+class ShopErrorUpdateUserState extends ShopStates {
+  final String errorMessage;
+
+  ShopErrorUpdateUserState(this.errorMessage);
+}

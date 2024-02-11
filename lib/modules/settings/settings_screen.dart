@@ -11,6 +11,8 @@ class SettingsScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
 
+  var formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
@@ -23,59 +25,84 @@ class SettingsScreen extends StatelessWidget {
         return ConditionalBuilder(
           condition: ShopCubit.get(context).userModel != null,
           builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  CustomTextFormField(
-                    textEditingController: nameController,
-                    type: TextInputType.name,
-                    label: 'Name',
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'name must not be empty';
-                      }
-                    },
-                    prefix: Icons.person,
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      if(state is ShopLoadingUpdateUserState)
+                      const LinearProgressIndicator(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextFormField(
+                        textEditingController: nameController,
+                        type: TextInputType.name,
+                        label: 'Name',
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return 'name must not be empty';
+                          }
+                        },
+                        prefix: Icons.person,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextFormField(
+                        textEditingController: emailController,
+                        type: TextInputType.emailAddress,
+                        label: 'Email Address',
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return 'email must not be empty';
+                          }
+                        },
+                        prefix: Icons.email_outlined,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CustomTextFormField(
+                        textEditingController: phoneController,
+                        type: TextInputType.phone,
+                        label: 'Enter your phone',
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return 'phone must not be empty';
+                          }
+                        },
+                        prefix: Icons.phone,
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      CustomButton(
+                        text: 'UPDATE',
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            ShopCubit.get(context).updateUser(
+                              name: nameController.text,
+                              email: emailController.text,
+                              phone: phoneController.text,
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      CustomButton(
+                        text: 'LOGOUT',
+                        onPressed: () {
+                          signOut(context);
+                        },
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextFormField(
-                    textEditingController: emailController,
-                    type: TextInputType.emailAddress,
-                    label: 'Email Address',
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'email must not be empty';
-                      }
-                    },
-                    prefix: Icons.email_outlined,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomTextFormField(
-                    textEditingController: phoneController,
-                    type: TextInputType.phone,
-                    label: 'Enter your phone',
-                    validate: (value) {
-                      if (value.isEmpty) {
-                        return 'phone must not be empty';
-                      }
-                    },
-                    prefix: Icons.phone,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  CustomButton(
-                    text: 'Logout',
-                    onPressed: () {
-                      signOut(context);
-                    },
-                  ),
-                ],
+                ),
               ),
             );
           },
