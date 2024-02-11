@@ -31,7 +31,7 @@ class ShopCubit extends Cubit<ShopStates> {
   List<Widget> screens = [
     const ProductScreen(),
     const CategoriesScreen(),
-    const CartsScreen(),
+    //const CartsScreen(),
     const FavoritesScreen(),
     SettingsScreen(),
   ];
@@ -49,12 +49,12 @@ class ShopCubit extends Cubit<ShopStates> {
       ),
       label: 'Category',
     ),
-    const BottomNavigationBarItem(
+    /*const BottomNavigationBarItem(
       icon: Icon(
         Icons.shopping_cart,
       ),
       label: 'Carts',
-    ),
+    ),*/
     const BottomNavigationBarItem(
       icon: Icon(
         Icons.favorite,
@@ -99,7 +99,7 @@ class ShopCubit extends Cubit<ShopStates> {
 
   void getGategories() async {
     await DioHelper.getData(
-      url: Categories,
+      url: CATEGORIES,
     ).then((value) {
       categoryModel = CategoryModel.fromJson(value.data);
       emit(ShopSuccessCategoryState(categoryModel!));

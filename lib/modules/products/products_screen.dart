@@ -197,10 +197,20 @@ Widget buildGridViewProducts(Products model, context) {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.add_shopping_cart_rounded,
-                    size: 28,
+                  onPressed: () {
+                   // ShopCubit.get(context).changeFavorites(model.id);
+                  },
+                  icon: const CircleAvatar(
+                    radius: 15,
+                    backgroundColor:
+                    false
+                        ? kPrimaryColor
+                        : Colors.grey,
+                    child: Icon(
+                      Icons.add_shopping_cart_outlined,
+                      size: 14,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
