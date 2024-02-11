@@ -22,8 +22,8 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginSuccessState) {
             if (state.loginModel.status!) {
-              print(state.loginModel.message);
-              print(state.loginModel.data?.token);
+              /*print(state.loginModel.message);
+              print(state.loginModel.data?.token);*/
               CacheHelper.saveData(
                 key: 'token',
                 value: state.loginModel.data?.token,
@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                 );
               });
             } else {
-              print(state.loginModel.message);
+              //print(state.loginModel.message);
               showToast(
                 text: state.loginModel.message!,
                 state: ToastStates.ERROR,

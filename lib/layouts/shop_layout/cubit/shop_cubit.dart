@@ -32,8 +32,6 @@ class ShopCubit extends Cubit<ShopStates> {
 
   Map<int, bool> favorites = {};
 
-
-
   List<Widget> screens = [
     const ProductScreen(),
     const CategoriesScreen(),

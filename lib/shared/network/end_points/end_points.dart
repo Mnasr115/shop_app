@@ -3,3 +3,4 @@ const HOME = 'home';
 const Categories = 'categories';
 const FAVORITES = 'categofavoritesries';
 const PROFILE = 'profile';
+const REGISTER = 'register';
