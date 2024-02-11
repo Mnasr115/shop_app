@@ -26,6 +26,7 @@ class ShopCubit extends Cubit<ShopStates> {
   LoginModel? userModel;
 
   Map<int, bool> favorites = {};
+  Map<int, bool> carts = {};
 
   List<Widget> screens = [
     const ProductScreen(),
@@ -154,6 +155,51 @@ class ShopCubit extends Cubit<ShopStates> {
       );
     });
   }
+
+  /*void changeCarts(int productId) async {
+    carts[productId] = !carts[productId]!;
+    emit(ShopLoadingChangeCartState());
+    await DioHelper.postData(
+      url: CART,
+      data: {
+        'product_id': productId,
+      },
+      token: token,
+    ).then((value) {
+      changeFavoritesModel = ChangeFavoritesModel.fromJson(value.data);
+      print(value.data);
+      if (!changeFavoritesModel!.status!) {
+        carts[productId] = !carts[productId]!;
+      }
+      else
+      {
+        getCarts();
+      }
+      emit(ShopSuccessChangeFavState(changeFavoritesModel!));
+    }).catchError((error) {
+      carts[productId] = !carts[productId]!;
+      emit(ShopErrorChangeFavState(error.toString()));
+    });
+  }
+
+
+  void getCarts() async {
+
+    emit(ShopLoadingAddedToCartState());
+    await DioHelper.getData(
+      url: CART,
+      token: token,
+    ).then((value) {
+      favoritesModel = FavoritesModel.fromJson(value.data);
+      emit(ShopSuccessAddedToCartState(favoritesModel!));
+    }).catchError((error) {
+      emit(
+        ShopErrorAddedToCartState(
+          error.toString(),
+        ),
+      );
+    });
+  }*/
 
   void getUserData() async {
     await DioHelper.getData(

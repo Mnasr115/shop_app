@@ -6,7 +6,7 @@ class SearchModel {
   SearchModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 }
 
@@ -47,7 +47,7 @@ class Data {
 
 
 class Product {
-  dynamic id;
+  int? id;
   dynamic price;
   dynamic oldPrice;
   int? discount;

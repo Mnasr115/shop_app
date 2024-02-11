@@ -119,8 +119,11 @@ Color chooseToastColor(ToastStates state) {
   return color;
 }
 
-
-Widget buildListProduct(model, context) {
+Widget buildListProduct(
+  model,
+  context, {
+  bool isOldPrice = true,
+}) {
   return Padding(
     padding: const EdgeInsets.all(20.0),
     child: SizedBox(
@@ -137,7 +140,7 @@ Widget buildListProduct(model, context) {
                 width: 120,
                 //fit: BoxFit.fill,
               ),
-              if (model.discount != 0)
+              if (model.discount != 0 && isOldPrice)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   color: Colors.red,
@@ -174,7 +177,7 @@ Widget buildListProduct(model, context) {
                     const SizedBox(
                       width: 5,
                     ),
-                    if (model.discount != 0)
+                    if (model.discount != 0 && isOldPrice)
                       Text(
                         '${model.oldPrice.toString()}' '\$',
                         style: const TextStyle(
@@ -185,15 +188,14 @@ Widget buildListProduct(model, context) {
                     const Spacer(),
                     IconButton(
                       onPressed: () {
-                        ShopCubit.get(context)
-                            .changeFavorites(model.id);
+                        ShopCubit.get(context).changeFavorites(model.id);
                       },
                       icon: CircleAvatar(
                         radius: 15,
-                        backgroundColor: ShopCubit.get(context)
-                            .favorites[model.id]!
-                            ? kPrimaryColor
-                            : Colors.grey,
+                        backgroundColor:
+                            ShopCubit.get(context).favorites[model.id]!
+                                ? kPrimaryColor
+                                : Colors.grey,
                         child: const Icon(
                           Icons.favorite_outline,
                           size: 14,
@@ -211,3 +213,4 @@ Widget buildListProduct(model, context) {
     ),
   );
 }
+

@@ -84,3 +84,32 @@ class ShopErrorUpdateUserState extends ShopStates {
 
   ShopErrorUpdateUserState(this.errorMessage);
 }
+
+class ShopLoadingAddedToCartState extends ShopStates {}
+
+class ShopSuccessAddedToCartState extends ShopStates {
+  final FavoritesModel favoritesModel;
+
+  ShopSuccessAddedToCartState(this.favoritesModel);
+
+}
+
+class ShopErrorAddedToCartState extends ShopStates {
+  final String errorMessage;
+
+  ShopErrorAddedToCartState(this.errorMessage);
+}
+
+class ShopSuccessChangeCartState extends ShopStates {
+  final ChangeFavoritesModel changeFavoritesModel;
+
+  ShopSuccessChangeCartState(this.changeFavoritesModel);
+}
+
+class ShopLoadingChangeCartState extends ShopStates {}
+
+class ShopErrorChangeCartState extends ShopStates {
+  final String errorMessage;
+
+  ShopErrorChangeCartState(this.errorMessage);
+}

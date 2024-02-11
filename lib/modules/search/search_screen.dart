@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layouts/shop_layout/cubit/shop_cubit.dart';
@@ -49,11 +51,27 @@ class SearchScreen extends StatelessWidget {
                     ),
                     if (state is LoadingSearchState)
                       const LinearProgressIndicator(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
                     if (state is! SuccessSearchState)
-                      const SizedBox(height: 10,),
-
-
-
+                      Expanded(
+                        child: ListView.separated(
+                          itemBuilder: (context, index) => buildListProduct(
+                            SearchCubit.get(context).searchModel!.data!.data![index],
+                            context,
+                            isOldPrice: false,
+                          ),
+                          itemCount: SearchCubit.get(context).searchModel!.data!.data!.length,
+                          separatorBuilder: (context, index) => Divider(
+                            thickness: 0.5,
+                            height: 2,
+                            indent: 16,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
