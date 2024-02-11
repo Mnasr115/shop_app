@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layouts/shop_layout/cubit/shop_cubit.dart';
+import 'package:shop_app/models/favorites_model/favorites_model.dart';
 import 'package:shop_app/modules/search/cubit/search_cubit.dart';
 import 'package:shop_app/shared/components/components.dart';
 
@@ -20,7 +21,7 @@ class SearchScreen extends StatelessWidget {
             appBar: AppBar(
               title: const Text('Search'),
             ),
-           /* body: Padding(
+            body: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
                 vertical: 20,
@@ -49,25 +50,14 @@ class SearchScreen extends StatelessWidget {
                     if (state is LoadingSearchState)
                       const LinearProgressIndicator(),
                     if (state is! SuccessSearchState)
-                    Expanded(
-                      child: ListView.separated(
-                        itemBuilder: (context, index) => buildListProduct(
-                         // SearchCubit.get(context).searchModel!.data!.data[index],
-                            context,),
-                        itemCount:10,
-                        //SearchCubit.get(context).searchModel!.data!.data!.length,
-                        separatorBuilder: (context, index) => Divider(
-                          thickness: 0.5,
-                          height: 2,
-                          indent: 16,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    )
+                      const SizedBox(height: 10,),
+
+
+
                   ],
                 ),
               ),
-            ),*/
+            ),
           );
         },
       ),

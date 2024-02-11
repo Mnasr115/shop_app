@@ -120,7 +120,7 @@ Color chooseToastColor(ToastStates state) {
 }
 
 
-Widget buildListProduct(FavoritesData model, context) {
+Widget buildListProduct(model, context) {
   return Padding(
     padding: const EdgeInsets.all(20.0),
     child: SizedBox(
@@ -132,12 +132,12 @@ Widget buildListProduct(FavoritesData model, context) {
             alignment: AlignmentDirectional.bottomStart,
             children: [
               CachedNetworkImage(
-                imageUrl: model.product!.image!,
+                imageUrl: model.image,
                 height: 120,
                 width: 120,
-                fit: BoxFit.fill,
+                //fit: BoxFit.fill,
               ),
-              if (model.product!.discount != 0)
+              if (model.discount != 0)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   color: Colors.red,
@@ -156,7 +156,7 @@ Widget buildListProduct(FavoritesData model, context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  model.product!.name!,
+                  model.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(height: 1.0),
@@ -165,7 +165,7 @@ Widget buildListProduct(FavoritesData model, context) {
                 Row(
                   children: [
                     Text(
-                      '${model.product!.price.toString()}' '\$',
+                      '${model.price.toString()}' '\$',
                       style: const TextStyle(
                         fontSize: 12,
                         color: kPrimaryColor,
@@ -174,9 +174,9 @@ Widget buildListProduct(FavoritesData model, context) {
                     const SizedBox(
                       width: 5,
                     ),
-                    if (model.product!.discount != 0)
+                    if (model.discount != 0)
                       Text(
-                        '${model.product!.oldPrice.toString()}' '\$',
+                        '${model.oldPrice.toString()}' '\$',
                         style: const TextStyle(
                           fontSize: 10,
                           decoration: TextDecoration.lineThrough,
@@ -186,12 +186,12 @@ Widget buildListProduct(FavoritesData model, context) {
                     IconButton(
                       onPressed: () {
                         ShopCubit.get(context)
-                            .changeFavorites(model.product!.id);
+                            .changeFavorites(model.id);
                       },
                       icon: CircleAvatar(
                         radius: 15,
                         backgroundColor: ShopCubit.get(context)
-                            .favorites[model.product!.id]!
+                            .favorites[model.id]!
                             ? kPrimaryColor
                             : Colors.grey,
                         child: const Icon(

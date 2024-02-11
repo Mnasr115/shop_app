@@ -3,6 +3,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/layouts/shop_layout/cubit/shop_cubit.dart';
+import 'package:shop_app/models/favorites_model/favorites_model.dart';
 import 'package:shop_app/shared/components/components.dart';
 import 'package:shop_app/shared/components/constant.dart';
 
@@ -18,7 +19,7 @@ class FavoritesScreen extends StatelessWidget {
           condition: state is! ShopLoadingGetFavState,//ShopCubit.get(context).favoritesModel != null,
           builder: (context) => ListView.separated(
             itemBuilder: (context, index) => buildListProduct(
-                ShopCubit.get(context).favoritesModel!.data!.data![index],
+                ShopCubit.get(context).favoritesModel!.data!.data![index].product!,
                 context),
             itemCount:
                 ShopCubit.get(context).favoritesModel!.data!.data!.length,
